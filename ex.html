@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+
+
+
+.cardContainer {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  grid-template-rows: auto auto;
+  grid-gap: 15px;
+  width: 90%;
+  margin: 25px auto;
+  
+
+
+}
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  margin: auto;
+  text-align: center;
+  font-family: arial;
+}
+
+.title {
+  color: grey;
+  font-size: 18px;
+}
+
+button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: rgba(92, 196, 205);
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+}
+
+a {
+  text-decoration: none;
+  font-size: 22px;
+  color: black;
+}
+
+button:hover, a:hover {
+  opacity: 0.7;
+}
+
+
+.body {font-family: Arial, Helvetica, sans-serif;}
+* {box-sizing: border-box;}
+
+
+.open-button {
+  background-color: rgba(92, 196, 205);
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  opacity: 0.8;
+  position: fixed;
+  bottom: 23px;
+  right: 28px;
+  width: 280px;
+}
+
+.chat-popup {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  right: 15px;
+  border: 3px solid #f1f1f1;
+  z-index: 9;
+}
+
+
+.form-container {
+  max-width: 300px;
+  padding: 10px;
+  background-color: white;
+}
+
+.form-container textarea {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+  resize: none;
+  min-height: 200px;
+}
+
+
+.form-container textarea:focus {
+  background-color: rgba(92, 196, 205);
+  outline: none;
+}
+
+.form-container .btn {
+  background-color: rgba(92, 196, 205);
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom:10px;
+  opacity: 0.8;
+}
+
+.form-container .cancel {
+  background-color: red;
+}
+
+.form-container .btn:hover, .open-button:hover {
+  opacity: 1;
+}
+
+.sidebar {
+  margin: 0;
+  padding: 0;
+  width: 200px;
+  background-color: #f1f1f1;
+  height: 100%;
+  overflow: auto;
+}
+
+.sidebar a {
+  display: block;
+  color: black;
+  padding: 16px;
+  text-decoration: none;
+}
+ 
+.sidebar a.active {
+  background-color:rgba(92, 196, 205);
+ ;
+  color: white;
+}
+
+.sidebar a:hover:not(.active) {
+  background-color: grey
+ ;
+  color: white;
+}
+
+.content {
+  margin-left: 100px;
+  padding: 1px 16px;
+  height: 1000px;
+}
+
+@media screen and (max-width: 700px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  .sidebar a {float: left;}
+  div.content {margin-left: 0;}
+}
+
+@media screen and (max-width: 400px) {
+  .sidebar a {
+    text-align: center;
+    float: none;
+  }
+}
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+header {
+    background-color: rgba(92, 196, 205);
+    padding: 30px;
+    text-align: center;
+    font-size: 35px;
+    color: white;
+}
+
+
+.nav {
+    float: left;
+    width: 30%;
+    height: 300px;
+    background: #ccc;
+    padding: 20px;
+    width: 150px;
+    height: 800px;
+}
+
+
+.nav ul {
+    list-style-type: none;
+    padding: 0;
+
+}
+
+.article {
+    float: left;
+    padding: 20px;
+    width: 80%;
+    background-color: #f1f1f1;
+    height: 300px; 
+}
+
+
+.section:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+
+.footer {
+    background-color: #777;
+    padding: 1px;
+    text-align: center;
+    color: white;
+   float: bottom;
+}
+
+
+@media (max-width: 600px) {
+    nav, article {
+        width: 100%;
+        height: auto;
+    }
+}
+</style>
+<header>
+  <h2>Central Board of Secondary Education</h2>
+</header>
+
+
+</head>
+<body>
+<img src="cbselogo.jpg" alt="CBSE logo" width="500" height="333">  
+
+<button class="open-button" onclick="openForm()">assist</button>
+
+<div class="chat-popup" id="myForm">
+  <form action="/action_page.php" class="form-container">
+    <h1>How can i help you?</h1>
+
+    <label for="msg"><b>Message</b></label>
+    <textarea placeholder="Type message.." name="msg" required></textarea>
+
+    <button type="submit" class="btn">Send</button>
+    <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+  </form>
+</div>
+
+<script>
+function openForm() {
+    document.getElementById("myForm").style.display = "block";
+}
+
+function closeForm() {
+    document.getElementById("myForm").style.display = "none";
+}
+</script>
+
+
+ <div class="sidebar">
+  <a class="active" href="#home">Home</a>
+  <a href="#news">News</a>
+  <a href="#results">results</a>
+  <a href="#contact">Contact</a>
+  <a href="#about">About</a>
+  <a href="#knowmore">knowmore </a>
+</div>
+
+
+<div style="width:100%; text-align: center">
+    <div class="cardContainer centertext" >
+
+
+<div class="card">
+  <img src="study.jpg" alt="John" style="width:100%">
+  <h1>CBSE </h1>
+  <p class="title">Updated News</p>
+  <p>The association of cbse karnataka is set to apprach the Karnataka 
+  HC as they feel thry arenin a fix before the next academic year starts in june</p>
+ <p><button>know more</button></p>
+</div>
+
+<div class="card">
+  <img src="study.jpg" alt="John" style="width:100%">
+  <h1>CBSE</h1>
+  <p class="title">Updated News</p>
+  <p>The association of cbse karnataka is set to apprach the Karnataka 
+  HC as they feel thry arenin a fix before the next academic year starts in june</p>
+ <p><button>know more</button></p>
+</div>
+
+<div class="card">
+  <img src="study.jpg" alt="John" style="width:100%">
+  <h1>CBSE</h1>
+  <p class="title">Updated News</p>
+  <p>The association of cbse karnataka is set to apprach the Karnataka 
+  HC as they feel thry arenin a fix before the next academic year starts in june</p>
+
+ <p><button>know more</button></p>
+</div>
+
+<div class="card">
+  <img src="study.jpg" alt="John" style="width:100%">
+  <h1>CBSE</h1>
+  <p class="title">Updated News</p>
+  <p>The association of cbse karnataka is set to apprach the Karnataka 
+  HC as they feel thry arenin a fix before the next academic year starts in june</p>
+
+ <p><button>know more</button></p>
+</div>
+
+<div class="card">
+  <img src="study.jpg" alt="John" style="width:100%">
+  <h1>CBSE</h1>
+  <p class="title">Updated News</p>
+  <p>The association of cbse karnataka is set to apprach the Karnataka 
+  HC as they feel thry arenin a fix before the next academic year starts in june</p>
+
+ <p><button>know more</button></p>
+
+</div>
+
+<div class="card">
+  <img src="study.jpg" alt="John" style="width:100%">
+  <h1>CBSE</h1>
+  <p class="title">Updated News</p>
+  <p>The association of cbse karnataka is set to apprach the Karnataka 
+  HC as they feel thry arenin a fix before the next academic year starts in june</p>
+
+ <p><button>know more</button></p>
+ </div>
+ <br>
+
+<div class="footer">
+  <p>Disclaimer: Neither NIC nor CBSE is responsible for any inadvertent error that may have crept in the results being published on NET. The results published on net are for immediate information to the examinees.</p>
+</div>
+
+
+
+
+</body>
+</html>
